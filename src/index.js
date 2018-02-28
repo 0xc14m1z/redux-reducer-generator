@@ -1,9 +1,10 @@
 const reducer = (initialState, map = {}) =>
-  validate(map) &&
-  (state = initialState, action = {}) =>
-    map[action.type]
-      ? map[action.type](state, action, initialState)
-      : state
+  validate(map) && (
+    (state = initialState, action = {}) =>
+      map[action.type]
+        ? map[action.type](state, action, initialState)
+        : state
+  )
 
 export default reducer
 module.exports = reducer
