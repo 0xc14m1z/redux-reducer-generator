@@ -26,4 +26,4 @@ const isObject = obj =>
   Object.getPrototypeOf(obj) === Object.prototype
 
 const isFunction = f =>
-  typeof func === "function"
+  typeof f === "function"
