@@ -50,6 +50,45 @@ describe("reducer", () => {
 
   })
 
+  describe("should throw an error if map values aren't just methods", () => {
+
+    it("when it's null", () => {
+      const initialState = {}
+      const map = { "ACTION": null }
+      const test = () => reducer(initialState, map)
+      expect(test).to.throw(TypeError)
+    })
+
+    it("when it's an array", () => {
+      const initialState = {}
+      const map = { "ACTION": [] }
+      const test = () => reducer(initialState, map)
+      expect(test).to.throw(TypeError)
+    })
+
+    it("when it's a literal string", () => {
+      const initialState = {}
+      const map = { "ACTION": "string" }
+      const test = () => reducer(initialState, map)
+      expect(test).to.throw(TypeError)
+    })
+
+    it("when it's a literal number", () => {
+      const initialState = {}
+      const map = { "ACTION": 42 }
+      const test = () => reducer(initialState, map)
+      expect(test).to.throw(TypeError)
+    })
+
+    it("when it's a Number object", () => {
+      const initialState = {}
+      const map = { "ACTION": new Number(42) }
+      const test = () => reducer(initialState, map)
+      expect(test).to.throw(TypeError)
+    })
+
+  })
+
   describe("private helper methods", () => {
 
     describe("isObject", () => {

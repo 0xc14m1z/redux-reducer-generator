@@ -10,15 +10,13 @@ export default reducer
 module.exports = reducer
 
 const validate = map => {
-  if ( isObject(map) ) {
-    if ( Object.values(map).every(value => isFunction(value)) ) {
-      return true
-    } else {
-      throw new TypeError("The map must contain only methods.")
-    }
-  } else {
+  if ( !isObject(map) )
     throw new TypeError("The map must be an object.")
-  }
+
+  if ( !Object.values(map).every(value => isFunction(value)) )
+    throw new TypeError("The map must contain only methods.")
+  
+  return true
 }
 
 const isObject = obj =>
@@ -27,3 +25,6 @@ const isObject = obj =>
 
 const isFunction = f =>
   typeof f === "function"
+
+const isString = s =>
+  !!s && typeof s === "string"
